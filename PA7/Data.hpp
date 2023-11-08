@@ -1,11 +1,30 @@
 #pragma once
 #include <string>
+#include <iostream>
 #include "Stack.hpp"
 
 class Data
 {
 public:
 	Data();
+
+	int getNumAbsences();
+	int getRecordNum();
+	int getIDNum();
+	std::string getName();
+	std::string getEmail();
+	std::string getUnits();
+	std::string getProgram();
+	std::string getLevel();
+
+	void setNumAbsences(int& newNum);
+	void setRecordNum(int& newNum);
+	void setIDNum(int& newNum);
+	void setName(std::string newName);
+	void setEmail(std::string newEmail);
+	void setUnits(std::string newUnits);
+	void setProgram(std::string newProgram);
+	void setLevel(std::string newLevel);
 
 
 private:
@@ -19,3 +38,6 @@ private:
 	std::string mLevel;
 	Stack* mAbsenceDates;
 };
+
+std::istream& operator>>(std::istream& lhs, Data& rhs);
+std::ostream& operator<<(std::ostream& lhs, Data& rhs);

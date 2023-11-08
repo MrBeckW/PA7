@@ -84,8 +84,17 @@ void ListNode<T>::printNode()
 }
 
 template<class T>
-std::ostream& operator<< (std::ostream& lhs, ListNode<T> rhs)
+std::ostream& operator<< (std::ostream& lhs, ListNode<T>& rhs)
 {
-	lhs << rhs.getData();
+	T temp = rhs.getData();
+	lhs << temp;
+	return lhs;
+}
+template<class T>
+std::istream& operator>> (std::istream& lhs, ListNode<T>& rhs)
+{
+	T buffer;
+	lhs >> buffer;
+	rhs.setData(buffer);
 	return lhs;
 }

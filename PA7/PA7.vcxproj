@@ -127,15 +127,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AttendanceManager.cpp" />
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Stack.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AttendanceManager.hpp" />
     <ClInclude Include="Data.hpp" />
     <ClInclude Include="List.hpp" />
     <ClInclude Include="Node.hpp" />
     <ClInclude Include="Stack.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="classList.csv" />
+    <None Include="masterList.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,15 +7,15 @@ class List
 {
 public:
 	List();
+	~List();
 
 	void insertFront(const T& data);
 	bool isEmpty();
 	void printList();
+	void destroyList();
 
 private:
 	ListNode<T>* createNode(const T &data);
-
-
 	ListNode<T>* mpHead;
 };
 
@@ -23,6 +23,13 @@ template<class T>
 List<T>::List()
 {
 	mpHead = nullptr;
+}
+
+template<class T>
+List<T>::~List()
+{
+	destroyList();
+
 }
 
 template<class T>
@@ -67,7 +74,7 @@ void List<T>::printList()
 		ListNode<T>* pCur = this->mpHead;
 		while (pCur != nullptr)
 		{
-			std::cout << *pCur << " : ";
+			std::cout << *pCur;
 			pCur = pCur->getpNext();
 		}
 	}
@@ -75,6 +82,27 @@ void List<T>::printList()
 	{
 		std::cout << "List Empty!\n";
 	}
+}
+
+template<class T>
+void List<T>::destroyList()
+{
+	if (mpHead != nullptr)
+	{
+		ListNode<T>* pCur = mpHead; 
+		ListNode<T>* pPrev = nullptr;
+		while (pCur != nullptr)
+		{
+			pPrev = pCur;
+			pCur = pCur->getpNext();
+			delete pPrev;
+		}
+	}
+	else
+	{
+		std::cout << "List Does Not exist.\n";
+	}
+
 }
 
 template<class T>
