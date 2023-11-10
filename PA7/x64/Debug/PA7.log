@@ -3,10 +3,6 @@ C:\Users\beckr\Documents\School Work\CS 122\ProgrammingAssaignments\PA7\PA7\Atte
 C:\Users\beckr\Documents\School Work\CS 122\ProgrammingAssaignments\PA7\PA7\AttendanceManager.hpp(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\beckr\Documents\School Work\CS 122\ProgrammingAssaignments\PA7\PA7\AttendanceManager.hpp(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\beckr\Documents\School Work\CS 122\ProgrammingAssaignments\PA7\PA7\AttendanceManager.hpp(5,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  main.cpp
-C:\Users\beckr\Documents\School Work\CS 122\ProgrammingAssaignments\PA7\PA7\AttendanceManager.hpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\beckr\Documents\School Work\CS 122\ProgrammingAssaignments\PA7\PA7\AttendanceManager.hpp(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\beckr\Documents\School Work\CS 122\ProgrammingAssaignments\PA7\PA7\AttendanceManager.hpp(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\beckr\Documents\School Work\CS 122\ProgrammingAssaignments\PA7\PA7\AttendanceManager.hpp(5,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Data.cpp
   Generating Code...
   PA7.vcxproj -> C:\Users\beckr\Documents\School Work\CS 122\ProgrammingAssaignments\PA7\PA7\x64\Debug\PA7.exe

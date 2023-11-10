@@ -14,6 +14,8 @@ public:
 	void printList();
 	void destroyList();
 
+	ListNode<T>* getpHead();
+
 private:
 	ListNode<T>* createNode(const T &data);
 	ListNode<T>* mpHead;
@@ -106,8 +108,15 @@ void List<T>::destroyList()
 }
 
 template<class T>
+ListNode<T>* List<T>::getpHead()
+{
+	return mpHead;
+}
+
+template<class T>
 ListNode<T>* List<T>::createNode(const T& data)
 {
 	ListNode<T>* pMem = new ListNode<T>(data);
 	return pMem;
 }
+

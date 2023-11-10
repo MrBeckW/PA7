@@ -1,4 +1,8 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <sstream>
+#include <fstream>
+#include <ctime>
+#include <string>
 #include "AttendanceManager.hpp"
 
 AttendanceManager::AttendanceManager()
@@ -64,10 +68,57 @@ void AttendanceManager::loadMasterList()
 
 void AttendanceManager::storeMasterList()
 {
+	std::ofstream masterOutput;
+	masterOutput.open("masterList.csv");
+
+	if (masterOutput)
+	{
+		ListNode<Data>* pCur = mMasterList->getpHead();
+		while (pCur != nullptr)
+		{
+			masterOutput << *pCur << std::endl;
+			pCur = pCur->getpNext();
+		}
+	}
+
+	masterOutput.close();
 }
 
 void AttendanceManager::markAbsence()
 {
+	if (mMasterList != nullptr)
+	{
+		ListNode<Data>* pCur = mMasterList->getpHead();
+		int selection = 0;
+		Data temp;
+		while (pCur != nullptr)
+		{
+			while (selection != 1 && selection != 2)
+			{
+				std::cout << "\nWas " << pCur->getData().getName() << " absent today? YES: 1 NO: 2\n";
+				std::cin >> selection;
+				switch (selection)
+				{
+				case 1:
+					temp = pCur->getData();
+					temp.incrementNumAbsences();
+					temp.getAbsenceDates().push(this->getTodaysDate());
+					pCur->setData(temp);
+					break;
+				case 2:
+					break;
+				default:
+					std::cout << "Selection out of bounds\n";
+				}
+			}
+			pCur = pCur->getpNext();
+			selection = 0;
+		}
+	}
+	else
+	{
+		std::cout << "\n---ERROR---\nThe Master List is not Loaded!\n";
+	}
 }
 
 void AttendanceManager::editAbsence()
@@ -128,4 +179,26 @@ void AttendanceManager::displayMenu()
 void AttendanceManager::displayList()
 {
 	mMasterList->printList();
+}
+
+std::string AttendanceManager::getTodaysDate()
+{
+	time_t t = time(0);
+	struct tm* now = localtime(&t);
+	
+	int year = now->tm_year + 1900, day = now->tm_mday, month = now->tm_mon + 1;
+
+	std::string date;
+	std::string dateArr[5];
+	dateArr[0] = std::to_string(month);
+	dateArr[1] = '/';
+	dateArr[2] = std::to_string(day);
+	dateArr[3] = '/';
+	dateArr[4] = std::to_string(year);
+
+	for (int i = 0; i < 5; i++)
+	{
+		date.append(dateArr[i]);
+	}
+	return date;
 }

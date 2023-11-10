@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 #include "Data.hpp"
 
 Data::Data()
@@ -11,7 +12,26 @@ Data::Data()
 	mUnits = "";
 	mProgram = "";
 	mLevel = "";
-	mAbsenceDates = nullptr;
+	
+}
+
+Data::Data(const Data& copy)
+{
+	mNumAbsences = copy.mNumAbsences;
+	mRecordNum = copy.mRecordNum;
+	mIDNum = copy.mIDNum;
+	mName = copy.mName;
+	mEmail = copy.mEmail;
+	mUnits = copy.mUnits;
+	mProgram = copy.mProgram;
+	mLevel = copy.mLevel;
+	mAbsenceDates = copy.mAbsenceDates;
+}
+
+Data::~Data()
+{
+	
+	
 }
 
 int Data::getNumAbsences()
@@ -54,6 +74,11 @@ std::string Data::getLevel()
 	return mLevel;
 }
 
+Stack& Data::getAbsenceDates()
+{
+	return mAbsenceDates;
+}
+
 void Data::setNumAbsences(int& newNum)
 {
 	mNumAbsences = newNum;
@@ -94,41 +119,65 @@ void Data::setLevel(std::string newLevel)
 	mLevel = newLevel;
 }
 
+void Data::incrementNumAbsences()
+{
+	mNumAbsences++;
+}
+
+Data& Data::operator=(const Data& rhs)
+{
+	mNumAbsences = rhs.mNumAbsences;
+	mRecordNum = rhs.mRecordNum;
+	mIDNum = rhs.mIDNum;
+	mName = rhs.mName;
+	mEmail = rhs.mEmail;
+	mUnits = rhs.mUnits;
+	mProgram = rhs.mProgram;
+	mLevel = rhs.mLevel;
+	mAbsenceDates = rhs.mAbsenceDates;
+	return *this;
+}
+
 std::istream& operator>>(std::istream& lhs, Data& rhs)
 {
 	std::string buffer;
-	std::vector<std::string> bufferSplit;
-	std::vector<int> bufferSplitInt;
-	int i = 0;
+	std::string bufferSplit[6];
+	int bufferSplitInt[3];
+	
 
 	while (getline(lhs, buffer, ','))//splits the buffer into vectors with respect to the type, then sets Data's values from those vectors.
 	{
-		
+		int i = 0;
 		if (i < 3)
 		{
-			bufferSplitInt.push_back(stoi(buffer));
+			bufferSplitInt[i] = stoi(buffer);
 			i++;
 		}
 		else
 		{
-			bufferSplit.push_back(buffer);
+			bufferSplit[i - 3] = buffer;
 		}
 		
 	}
 	rhs.setNumAbsences(bufferSplitInt[0]);
 	rhs.setRecordNum(bufferSplitInt[1]);
 	rhs.setIDNum(bufferSplitInt[2]);
-	rhs.setName(bufferSplit[0]);
-	rhs.setEmail(bufferSplit[1]);
-	rhs.setUnits(bufferSplit[2]);
-	rhs.setProgram(bufferSplit[3]);
-	rhs.setLevel(bufferSplit[4]);
+	rhs.setName(bufferSplit[0] + ',' + bufferSplit[1]);
+	rhs.setEmail(bufferSplit[2]);
+	rhs.setUnits(bufferSplit[3]);
+	rhs.setProgram(bufferSplit[4]);
+	rhs.setLevel(bufferSplit[5]);
 	
 	return lhs;
 }
 
 std::ostream& operator<<(std::ostream& lhs, Data& rhs)
 {
-	lhs << rhs.getNumAbsences() << ',' << rhs.getRecordNum() << ',' << rhs.getIDNum() << ',' << rhs.getName() << ',' << rhs.getEmail() << ',' << rhs.getUnits() << ',' << rhs.getProgram() << ',' << rhs.getLevel() << std::endl;
+	lhs << rhs.getNumAbsences() << ',' << rhs.getRecordNum() << ',' << rhs.getIDNum() << ',' << rhs.getName() << ',' << rhs.getEmail() << ',' << rhs.getUnits() << ',' << rhs.getProgram() << ',' << rhs.getLevel() << ',';
+	if (!rhs.getAbsenceDates().isEmpty())
+	{
+		 lhs << rhs.getAbsenceDates();
+	}
+	
 	return lhs;
 }

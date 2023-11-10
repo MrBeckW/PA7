@@ -7,6 +7,8 @@ class Data
 {
 public:
 	Data();
+	Data(const Data& copy);
+	~Data();
 
 	int getNumAbsences();
 	int getRecordNum();
@@ -16,6 +18,7 @@ public:
 	std::string getUnits();
 	std::string getProgram();
 	std::string getLevel();
+	Stack& getAbsenceDates();
 
 	void setNumAbsences(int& newNum);
 	void setRecordNum(int& newNum);
@@ -26,6 +29,9 @@ public:
 	void setProgram(std::string newProgram);
 	void setLevel(std::string newLevel);
 
+	void incrementNumAbsences();
+
+	Data& operator=(const Data& rhs);
 
 private:
 	int mNumAbsences;
@@ -36,7 +42,7 @@ private:
 	std::string mUnits;
 	std::string mProgram;
 	std::string mLevel;
-	Stack* mAbsenceDates;
+	Stack mAbsenceDates;
 };
 
 std::istream& operator>>(std::istream& lhs, Data& rhs);

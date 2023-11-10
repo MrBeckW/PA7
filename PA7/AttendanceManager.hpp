@@ -23,6 +23,7 @@ private:
 	void menu();
 	void displayMenu();
 	void displayList();
+	std::string getTodaysDate();
 
 	List<Data>* mMasterList;
 	std::ifstream mImput;
