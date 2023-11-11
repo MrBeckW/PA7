@@ -29,7 +29,7 @@ public:
 	void setProgram(std::string newProgram);
 	void setLevel(std::string newLevel);
 
-	void incrementNumAbsences();
+	void incrementNumAbsences(char sign);
 
 	Data& operator=(const Data& rhs);
 

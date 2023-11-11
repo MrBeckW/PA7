@@ -18,10 +18,9 @@ private:
 	void loadMasterList();//Loads the masterlist with data from masterList.csv(contains previous absence data)
 	void storeMasterList();
 	void markAbsence();
-	void editAbsence();
 	void generateReport();
 	void menu();
-	void displayMenu();
+	void displayMenu(int menuSelect);
 	void displayList();
 	std::string getTodaysDate();
 

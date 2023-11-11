@@ -21,19 +21,31 @@ private:
 	ListNode<T>* mpHead;
 };
 
+/// <summary>
+/// default constructor for List
+/// </summary>
+/// <typeparam name="T">data entry of variable type T</typeparam>
 template<class T>
 List<T>::List()
 {
 	mpHead = nullptr;
 }
 
+/// <summary>
+/// destructor for List, calls memberfunction destroyList
+/// </summary>
+/// <typeparam name="T">data entry of variable type T</typeparam>
 template<class T>
 List<T>::~List()
 {
 	destroyList();
-
 }
 
+/// <summary>
+/// Insert at front function for List
+/// </summary>
+/// <typeparam name="T">data entry of variable type T</typeparam>
+/// <param name="data">data entry to be inserted</param>
 template<class T>
 void List<T>::insertFront(const T& data)
 {
@@ -57,6 +69,11 @@ void List<T>::insertFront(const T& data)
 	
 }
 
+/// <summary>
+/// Member function that checks if the list is empty
+/// </summary>
+/// <typeparam name="T">data entry of variable type T</typeparam>
+/// <returns>true if list is empty</returns>
 template<class T>
 bool List<T>::isEmpty()
 {
@@ -68,6 +85,10 @@ bool List<T>::isEmpty()
 	return success;
 }
 
+/// <summary>
+/// Prints the data of every node in the list, each data entry is placed on its own line.
+/// </summary>
+/// <typeparam name="T">data entry of variable type T</typeparam>
 template<class T>
 void List<T>::printList()
 {
@@ -76,7 +97,7 @@ void List<T>::printList()
 		ListNode<T>* pCur = this->mpHead;
 		while (pCur != nullptr)
 		{
-			std::cout << *pCur;
+			std::cout << *pCur << std::endl;
 			pCur = pCur->getpNext();
 		}
 	}
@@ -86,6 +107,10 @@ void List<T>::printList()
 	}
 }
 
+/// <summary>
+/// deallocates every node in the list
+/// </summary>
+/// <typeparam name="T">data entry of variable type T</typeparam>
 template<class T>
 void List<T>::destroyList()
 {
@@ -107,12 +132,23 @@ void List<T>::destroyList()
 
 }
 
+/// <summary>
+/// getter for pHead
+/// </summary>
+/// <typeparam name="T">data entry of variable type T</typeparam>
+/// <returns>pointer to the head of the list</returns>
 template<class T>
 ListNode<T>* List<T>::getpHead()
 {
 	return mpHead;
 }
 
+/// <summary>
+/// Allocates memory for a List Node
+/// </summary>
+/// <typeparam name="T">data entry of variable type T</typeparam>
+/// <param name="data">data to be stored in node</param>
+/// <returns>pointer to the newly allocated node</returns>
 template<class T>
 ListNode<T>* List<T>::createNode(const T& data)
 {
